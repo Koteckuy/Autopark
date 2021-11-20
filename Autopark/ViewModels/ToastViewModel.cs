@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MathCore.ViewModels;
 
 namespace Autopark.ViewModels
 {
-    class ToastViewModel
+    class ToastViewModel : ViewModel
     {
+        #region Содержание
+
+        private string _Content;
+
+        public string Content { get => _Content; set => Set(ref _Content, value); }
+
+        #endregion
     }
 }
