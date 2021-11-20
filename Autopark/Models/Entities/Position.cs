@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AISTest.Models
+namespace Autopark.Models.Entities
 {
     [Table("Position")]
     public class Position
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        [ForeignKey("DepartmentID")]
         public int DepartmentID { get; set; }
         public bool Deleted { get; set; }
     

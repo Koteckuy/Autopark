@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AISTest.Models
+namespace Autopark.Models.Entities
 {
-	[Table("Task")]
+    [Table("Task")]
 	public class Task
 	{
 		public int ID { get; set; }
+		[ForeignKey("CustomerID")]
 		public int CustomerID { get; set; }
-        public int RouteID { get; set; }
+		[ForeignKey("RouteID")]
+		public int RouteID { get; set; }
         public int Mileage { get; set; }
         public string Details { get; set; }
         public bool Deleted { get; set; }

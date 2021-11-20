@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AISTest.Models
+namespace Autopark.Models.Entities
 {
     [Table("Department")]
     public class Department

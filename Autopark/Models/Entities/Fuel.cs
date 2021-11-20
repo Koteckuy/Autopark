@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AISTest.Models
+namespace Autopark.Models.Entities
 {
     [Table("Fuel")]
     public class Fuel

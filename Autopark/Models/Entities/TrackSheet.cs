@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AISTest.Models
+namespace Autopark.Models.Entities
 {
     [Table("TrackSheet")]
     public class TrackSheet
 	{
         public int ID { get; set; }
+        [ForeignKey("DriverID")]
         public int DriverID { get; set; }
+        [ForeignKey("CarID")]
         public int CarID { get; set; }
 		public DateTime ReportDate { get; set; }
+        [ForeignKey("StatusID")]
         public int StatusID { get; set; }
+        [ForeignKey("CheckerID")]
         public int CheckerID { get; set; }
+        [ForeignKey("AuthorizedID")]
         public int AuthorizedID { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan ReturnTime { get; set; }

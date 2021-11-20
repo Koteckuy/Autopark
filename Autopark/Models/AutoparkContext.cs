@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Autopark.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace AISTest.Models
+namespace Autopark.Models
 {
     public class AutoparkContext : DbContext
     {
