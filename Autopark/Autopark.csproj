@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialIcons" Version="1.0.3" />
     <PackageReference Include="MathCore.WPF" Version="0.0.27.1" />
     <PackageReference Include="Meziantou.WpfFontAwesome" Version="5.15.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.12" />
