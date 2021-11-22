@@ -5,11 +5,236 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Autopark"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
-    Width="800"
-    Height="450"
+    xmlns:mi="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+    xmlns:vm="clr-namespace:Autopark.ViewModels"
+    Title="{Binding Title}"
+    Width="1280"
+    Height="720"
+    d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
-    <Grid>
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <DockPanel>
+        <Grid HorizontalAlignment="Right" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button
+                    Width="20"
+                    Height="20"
+                    Command="{Binding MinimizeAppCommand}">
+                    <Button.Content>
+                        <mi:MaterialIcon Kind="WindowMinimize" />
+                    </Button.Content>
+                </Button>
+                <Button
+                    Width="20"
+                    Height="20"
+                    Command="{Binding MaximizeAppCommand}">
+                    <Button.Content>
+                        <mi:MaterialIcon Kind="WindowMaximize" />
+                    </Button.Content>
+                </Button>
+                <Button
+                    Width="20"
+                    Height="20"
+                    Command="{Binding CloseAppCommand}">
+                    <Button.Content>
+                        <mi:MaterialIcon Kind="CloseBold" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Width="60" DockPanel.Dock="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Grid Width="60" Height="60">
+                    <mi:MaterialIcon
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Kind="Adjust" />
+                </Grid>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="ChartBoxOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="ClipboardTextOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="FileDocumentOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="BriefcaseVariantOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="AccountTieOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="AccountMultipleOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="AccountCogOutline" />
+                    </Button.Content>
+                </Button>
+                <Button Width="60" Height="60">
+                    <Button.Content>
+                        <mi:MaterialIcon
+                            Width="40"
+                            Height="40"
+                            Kind="CarOutline" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <Button
+                Grid.Row="1"
+                Width="60"
+                Height="60">
+                <Button.Content>
+                    <mi:MaterialIcon
+                        Width="40"
+                        Height="40"
+                        Kind="SettingsOutline" />
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
 
-    </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <TabControl>
+                    <TabItem>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Tasks}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Customer.FirstName}" Header="Заказчик" />
+                                <DataGridTextColumn Binding="{Binding Route.Name}" Header="Маршрут" />
+                                <DataGridTextColumn Binding="{Binding Mileage}" Header="Километраж" />
+                                <DataGridTextColumn Binding="{Binding Details}" Header="Описание" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TrackSheets}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Driver.FirstName}" Header="Водитель" />
+                                <DataGridTextColumn Binding="{Binding Car.Model}" Header="Маршрут" />
+                                <DataGridTextColumn Binding="{Binding ReportDate}" Header="Дата" />
+                                <DataGridTextColumn Binding="{Binding Checker.FirstName}" Header="Механик" />
+                                <DataGridTextColumn Binding="{Binding Authorized.FirstName}" Header="Уполномоченное  лицо" />
+                                <DataGridTextColumn Binding="{Binding StartTime}" Header="Время выезда" />
+                                <DataGridTextColumn Binding="{Binding ReturnTime}" Header="Время возвращения" />
+                                <DataGridTextColumn Binding="{Binding Status.Name}" Header="Статус" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Departments}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Наименование" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Positions}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Наименование" />
+                                <DataGridTextColumn Binding="{Binding Department.Name}" Header="Отдел" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Employees}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding FirstName}" Header="Фамилия" />
+                                <DataGridTextColumn Binding="{Binding SecondName}" Header="Имя" />
+                                <DataGridTextColumn Binding="{Binding ThirdName}" Header="Отчество" />
+                                <DataGridTextColumn Binding="{Binding Phone}" Header="Телефон" />
+                                <DataGridTextColumn Binding="{Binding Address}" Header="Адрес" />
+                                <DataGridTextColumn Binding="{Binding Position.Name}" Header="Должность" />
+                                <DataGridTextColumn Binding="{Binding Position.Department.Name}" Header="Отдел" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Accounts}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Employee.FirstName}" Header="Сотрудник" />
+                                <DataGridTextColumn Binding="{Binding Login}" Header="Логин" />
+                                <DataGridTextColumn Binding="{Binding Password}" Header="Пароль" />
+                                <DataGridTextColumn Binding="{Binding Role.Name}" Header="Уровень доступа" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Cars}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding LicensePlate}" Header="Номер" />
+                                <DataGridTextColumn Binding="{Binding Brand.Name}" Header="Бренд" />
+                                <DataGridTextColumn Binding="{Binding Model}" Header="Модель" />
+                                <DataGridTextColumn Binding="{Binding Mileage}" Header="Пробег" />
+                                <DataGridTextColumn Binding="{Binding Fuel.Name}" Header="Топливо" />
+                                <DataGridTextColumn Binding="{Binding FuelRemaining}" Header="Остаток топлива" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <Grid Grid.Row="2">
+
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
