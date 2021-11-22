@@ -7,6 +7,7 @@ namespace Autopark.ViewModels
 {
     class MainWindowViewModel : BaseViewModel
     {
+
         #region Команды
 
         #region MinimizeAppCommand
@@ -25,8 +26,8 @@ namespace Autopark.ViewModels
 
         private bool CanMaximizeAppCommandExecute(object o) => true;
 
-        private void OnMaximizeAppCommandExecuted(object o) => Application.Current.MainWindow.WindowState = 
-            Application.Current.MainWindow.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        private void OnMaximizeAppCommandExecuted(object o) => Application.Current.MainWindow.WindowState =
+           Application.Current.MainWindow.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
 
         #endregion
 
