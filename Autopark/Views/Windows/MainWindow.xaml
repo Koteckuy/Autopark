@@ -2,6 +2,7 @@
     x:Class="Autopark.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:Autopark.Infrastructure.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Autopark"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,6 +15,9 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
+    <Window.Resources>
+        <cv:MultiConverter x:Key="MultiConverter" />
+    </Window.Resources>
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
@@ -64,7 +68,16 @@
                         VerticalAlignment="Center"
                         Kind="Adjust" />
                 </Grid>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="0" />
+                            <Binding Source="Аналитика" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -72,7 +85,16 @@
                             Kind="ChartBoxOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="1" />
+                            <Binding Source="Задачи" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -80,7 +102,16 @@
                             Kind="ClipboardTextOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="2" />
+                            <Binding Source="Путевые листы" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -88,7 +119,16 @@
                             Kind="FileDocumentOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="3" />
+                            <Binding Source="Отделы" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -96,7 +136,16 @@
                             Kind="BriefcaseVariantOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="4" />
+                            <Binding Source="Должности" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -104,7 +153,16 @@
                             Kind="AccountTieOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="5" />
+                            <Binding Source="Сотрудники" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -112,7 +170,16 @@
                             Kind="AccountMultipleOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="6" />
+                            <Binding Source="Аккаунты" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -120,7 +187,16 @@
                             Kind="AccountCogOutline" />
                     </Button.Content>
                 </Button>
-                <Button Width="60" Height="60">
+                <Button
+                    Width="60"
+                    Height="60"
+                    Command="{Binding OpenTabCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource MultiConverter}">
+                            <Binding Source="7" />
+                            <Binding Source="Автомобили" />
+                        </MultiBinding>
+                    </Button.CommandParameter>
                     <Button.Content>
                         <mi:MaterialIcon
                             Width="40"
@@ -132,7 +208,14 @@
             <Button
                 Grid.Row="1"
                 Width="60"
-                Height="60">
+                Height="60"
+                Command="{Binding OpenTabCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource MultiConverter}">
+                        <Binding Source="8" />
+                        <Binding Source="Настройки" />
+                    </MultiBinding>
+                </Button.CommandParameter>
                 <Button.Content>
                     <mi:MaterialIcon
                         Width="40"
@@ -148,13 +231,21 @@
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="{Binding Title}"
+                    FontSize="24" />
             </Grid>
             <Grid Grid.Row="1">
-                <TabControl>
-                    <TabItem>
+                <TabControl
+                    Padding="0"
+                    BorderThickness="0"
+                    SelectedIndex="{Binding SelectedPageIndex}"
+                    TabStripPlacement="Bottom">
+                    <TabItem Visibility="Collapsed">
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Tasks}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Customer.FirstName}" Header="Заказчик" />
@@ -164,7 +255,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TrackSheets}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Driver.FirstName}" Header="Водитель" />
@@ -178,14 +269,14 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Departments}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Наименование" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Positions}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Name}" Header="Наименование" />
@@ -193,7 +284,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Employees}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding FirstName}" Header="Фамилия" />
@@ -206,7 +297,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Accounts}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Employee.FirstName}" Header="Сотрудник" />
@@ -216,7 +307,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Cars}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding LicensePlate}" Header="Номер" />
@@ -228,7 +319,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Visibility="Collapsed">
                     </TabItem>
                 </TabControl>
             </Grid>

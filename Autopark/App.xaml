@@ -5,6 +5,5 @@
     xmlns:local="clr-namespace:Autopark"
     StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
-
     </Application.Resources>
 </Application>
