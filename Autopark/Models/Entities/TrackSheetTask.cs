@@ -3,14 +3,12 @@
 namespace Autopark.Models.Entities
 {
     [Table("TrackSheetTask")]
-    public class TrackSheetTask
-	{
-		public int ID { get; set; }
+    public class TrackSheetTask : BaseModel
+    {
         [ForeignKey("TrackSheetID")]
         public int TrackSheetID { get; set; }
         [ForeignKey("TaskID")]
         public int TaskID { get; set; }
-        public bool Deleted { get; set; }
 
         public virtual TrackSheet TrackSheet { get; set; }
         public virtual Task Task { get; set; }

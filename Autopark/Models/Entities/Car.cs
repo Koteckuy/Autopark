@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Autopark.Models.Entities
 {
     [Table("Car")]
-    public class Car
+    public class Car : BaseModel
     {
-        public int ID { get; set; }
         [ForeignKey("BrandID")]
         public int BrandID { get; set; }
         public string Model { get; set; }
@@ -15,11 +14,15 @@ namespace Autopark.Models.Entities
         [ForeignKey("FuelID")]
         public int FuelID { get; set; }
         public float FuelRemaining { get; set; }
-        public bool Deleted { get; set; }
 
         public virtual Brand Brand { get; set; }
         public virtual Fuel Fuel { get; set; }
 
         public virtual ICollection<TrackSheet> TrackSheets { get; set; }
+
+        public override string ToString()
+        {
+            return Brand.Name + Model;
+        }
     }
 }

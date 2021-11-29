@@ -5,9 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Autopark.Models.Entities
 {
     [Table("TrackSheet")]
-    public class TrackSheet
-	{
-        public int ID { get; set; }
+    public class TrackSheet : BaseModel
+    {
         [ForeignKey("DriverID")]
         public int DriverID { get; set; }
         [ForeignKey("CarID")]
@@ -21,7 +20,6 @@ namespace Autopark.Models.Entities
         public int AuthorizedID { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan ReturnTime { get; set; }
-        public bool Deleted { get; set; }
     
         public virtual Employee Driver { get; set; }
         public virtual Car Car { get; set; }

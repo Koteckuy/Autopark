@@ -4,12 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Autopark.Models.Entities
 {
     [Table("Status")]
-    public class Status
+    public class Status : BaseModel
     {
-        public int ID { get; set; }
         public string Name { get; set; }
-        public bool Deleted { get; set; }
 
         public virtual ICollection<TrackSheet> TrackSheets { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
